@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/wtfal/CLionProjects/heap/binomialheap.h
+algorithm
+-
+stdexcept
+-
+
+C:/Users/wtfal/CLionProjects/heap/heap.h
+cstddef
+-
+vector.h
+C:/Users/wtfal/CLionProjects/heap/vector.h
+
+C:/Users/wtfal/CLionProjects/heap/test.cpp
+iostream
+-
+heap.h
+C:/Users/wtfal/CLionProjects/heap/heap.h
+binomialheap.h
+C:/Users/wtfal/CLionProjects/heap/binomialheap.h
+
+C:/Users/wtfal/CLionProjects/heap/vector.h
+stdexcept
+-
+

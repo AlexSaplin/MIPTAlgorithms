@@ -1,52 +1,85 @@
-#include <exception>
-
-template<class T>
-class Vector
+#include <stdexcept>
+template <typename T>
+class vector
 {
 private:
-	T* array;
-	int sz;
-	int max_size;
-	void inc_sz()
-	{
-		max_size <<= 1;
-		T* narray = new T[2 * sz];
-		memcpy(narray, array, sizeof array);
-		delete array;
-		array = narray;
-	} 
+
+    void reduce_vector()
+    {
+        T *new_vector = new T[array_size / 2];
+        array_size = array_size / 2;
+        for (int i = 0; i < current_size; i++)
+        {
+            new_vector[i] = array[i];
+        }
+        delete[](array);
+        array = new_vector;
+    }
+
+    void expand_vector()
+    {
+        T *new_vector = new T[array_size * 2 + 1];
+        array_size = array_size * 2 + 1;
+        for (int i = 0; i < current_size; i++)
+        {
+            new_vector[i] = array[i];
+        }
+        delete[](array);
+        array = new_vector;
+    }
+
+
 public:
-	Vector()
-	{
-		sz = 0;
-		array = new T[1];
-	}
-	int get_size()
-	{
-		return sz;
-	}
-	void push_back(int value)
-	{
-		if (max_size == sz)
-		{
-			inc_sz();
-		}
-		array[sz++] = value;
-	}
-	void pop_back()
-	{
-		--sz;
-		if (sz < 0)
-		{
-			throw std::out_of_range("Cannot pop_back from empty Vector");
-		}
-	}
-	T& operator[](int id)
-	{
-		if (id < -sz || id >= sz)
-		{
-			throw std::out_of_range("Out of range");
-		}
-		return id >= 0 ? array[id] : array[sz + id];
-	}
+
+    T *array;
+    int array_size = 0;
+    int current_size = 0;
+    ~vector()
+    {
+        delete[](array);
+    }
+
+    int size()
+    {
+        return current_size;
+    }
+
+    void swap(int pos_first, int pos_second)
+    {
+        T buff = array[pos_first];
+        array[pos_first] = array[pos_second];
+        array[pos_second] = array[pos_first];
+    }
+
+    T &operator[](int index)
+    {
+        if (0 > index || index >= current_size)
+        {
+            throw std::out_of_range("No such element in vector");
+        }
+        return array[index];
+    }
+
+    void push_back(T value)
+    {
+        if (current_size >= array_size)
+        {
+            expand_vector();
+        }
+        array[current_size++] = value;
+    }
+
+    void pop_back()
+    {
+        if (current_size == 0)
+        {
+            throw std::logic_error("Vector is empty");
+        }
+        current_size--;
+        if (4 * current_size < array_size)
+        {
+            reduce_vector();
+        }
+    }
+
 };

@@ -1,0 +1,3 @@
+C:/Users/wtfal/CLionProjects/heap/cmake-build-debug/CMakeFiles/heap.dir
+C:/Users/wtfal/CLionProjects/heap/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/wtfal/CLionProjects/heap/cmake-build-debug/CMakeFiles/rebuild_cache.dir
