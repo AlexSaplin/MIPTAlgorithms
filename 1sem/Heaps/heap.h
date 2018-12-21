@@ -200,8 +200,14 @@ public:
 
     void optimize(size_t insert_count, size_t extract_count)
     {
+        if (extract_count == 0)
+        {
+            extract_count = 1;
+        }
         if (children_count < insert_count / extract_count)
+        {    
             children_count = insert_count / extract_count;
+        }
     }
 
 };
